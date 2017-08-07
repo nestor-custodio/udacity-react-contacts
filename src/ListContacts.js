@@ -33,6 +33,14 @@ class ListContacts extends React.Component {
         <div className="list-contacts-top">
           <input type="text" className="search-contacts" placeholder="Search contacts" value={this.state.query} onChange={(e) => { this.updateQuery(e.target.value); }} />
         </div>
+
+        {(this.props.contacts.length !== showingContacts.length) && (
+          <div className='showing-contacts'>
+            <span>Now Showing {showingContacts.length} of {this.props.contacts.length}</span>
+            <button onClick={() => { this.updateQuery('') }}>Show All</button>
+          </div>
+        )}
+
         <ol className="contact-list">
           {showingContacts.map((contact) => (
             <li key={contact.id} className='contact-list-item'>
