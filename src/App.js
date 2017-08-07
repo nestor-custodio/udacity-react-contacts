@@ -31,7 +31,7 @@ class App extends Component {
         contacts: oldState.contacts.filter((i) => { return (i.id !== contact.id) })
       };
     });
-  }
+  };
 
   render() {
     return (
