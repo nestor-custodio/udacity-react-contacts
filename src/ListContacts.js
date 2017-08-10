@@ -31,7 +31,15 @@ class ListContacts extends React.Component {
     return (
       <div className="list-contacts">
         <div className="list-contacts-top">
-          <input type="text" className="search-contacts" placeholder="Search contacts" value={this.state.query} onChange={(e) => { this.updateQuery(e.target.value); }} />
+          <input type="text"
+                 className="search-contacts"
+                 placeholder="Search contacts"
+                 value={this.state.query}
+                 onChange={(e) => { this.updateQuery(e.target.value); }} />
+          <a href="#create"
+             onClick={this.props.onNavigate}
+             className="add-contact"
+          >Add Contact</a>
         </div>
 
         {(this.props.contacts.length !== showingContacts.length) && (
@@ -52,7 +60,8 @@ class ListContacts extends React.Component {
                 <p>{contact.name}</p>
                 <p>{contact.email}</p>
               </div>
-              <button className='contact-remove' onClick={() => { this.props.onDeleteContact(contact) }}>Remove</button>
+              <button className='contact-remove'
+                      onClick={() => { this.props.onDeleteContact(contact) }}>Remove</button>
             </li>
           ))}
         </ol>
@@ -61,4 +70,4 @@ class ListContacts extends React.Component {
   }
 }
 
-export default ListContacts
+export default ListContacts;
