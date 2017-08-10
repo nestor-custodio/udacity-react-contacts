@@ -16,6 +16,18 @@ class App extends Component {
     });
   }
 
+  createContact(contact) {
+    console.log("!");
+    ContactsAPI.create(contact).then((contact) => {
+      this.setState((oldState) => {
+        return {
+          contacts: oldState.contacts.concat([ contact ])
+        };
+      });
+    });
+
+  };
+
   deleteContact = (contact) => {
     this.setState((oldState) => {
       return {
@@ -36,8 +48,13 @@ class App extends Component {
               onNavigate={() => { this.setState({ screen: 'create' }) }}
             />
           )} />
-          <Route path="/create" render={() => (
-            <CreateContact />
+          <Route path="/create" render={({ history }) => (
+            <CreateContact
+              onCreateContact={(contact) => {
+                this.createContact(contact);
+                history.push("/");
+              }}
+            />
           )} />
         </div>
     );
